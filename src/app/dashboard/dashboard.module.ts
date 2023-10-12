@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { AlumnosModule } from './pages/alumnos/alumnos.module';
+import { CursosModule } from './pages/cursos/cursos.module';
 
 
 
@@ -11,7 +13,9 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    AlumnosModule,
+    CursosModule
   ],
   exports:[DashboardComponent]
 })

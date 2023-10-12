@@ -1,5 +1,5 @@
 
-<p>
+<header>
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <mat-icon style="font-size: 40px; height: 40px; width: 40px;">
@@ -7,11 +7,35 @@
            </mat-icon>
         <span>Academia de Exploradores Cosmicos</span>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-          <mat-icon>menu</mat-icon>
+        <button (click)="drawer.toggle()" mat-icon-button  class="example-icon" aria-label="Example icon-button with menu icon" >
+          <mat-icon >menu</mat-icon>
         </button>
       </mat-toolbar-row>
   
      
     </mat-toolbar>
-  </p>
+  </header>
+
+  <mat-drawer-container class="example-container" autosize >
+    <mat-drawer #drawer class="example-sidenav" mode="over" position="end">
+    <mat-icon style="font-size: 30px; height: 30px; width: 30px;" type="button" mat-button (click)="drawer.toggle()">arrow_forward</mat-icon>
+      <p>BARRA DE AYUDA</p>
+      <ul>
+        <li><button mat-button (click)="onCLickAlumnos()">ALUMNOS</button></li>
+        <li><button mat-button (click)="onClickCursos()">CURSOS</button></li>
+        <li><button mat-button (click)="onClickClases()">CLASES</button></li>
+      </ul>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+        <!-- AQUI VA EL CONTENIDO PAGES -->
+          <app-cursos *ngIf="opcionCursos"></app-cursos>
+          <app-alumnos *ngIf="opcionAlumnos"></app-alumnos>
+    </div>
+  
+  </mat-drawer-container>
+  
