@@ -1,1 +1,41 @@
-<p>dialog-cursos works!</p>
+<!-- <h1 mat-dialog-title>
+    {{ user ? "Editando usuario" : "Crear usuario" }}
+  </h1> -->
+<h1 mat-dialog-title>
+  CREANDO USUARIO
+</h1>
+<div mat-dialog-content>
+  <!-- Contenido... -->
+  <form [formGroup]="cursoForm">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nombre CURSO</mat-label>
+          <input formControlName="name" matInput />
+
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>ESTADO</mat-label>
+          <input formControlName="state" matInput />
+
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+
+  <div mat-dialog-actions>
+    <div class="row">
+      <div class="col-6">
+        <button mat-dialog-close mat-button color="accent" class="w-100">Cancelar</button>
+      </div>
+
+      <div class="col-6">
+        <button mat-flat-button color="accent" class="w-100">Guardar</button>
+      </div>
+
+    </div>
+  </div>

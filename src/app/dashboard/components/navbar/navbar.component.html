@@ -1,0 +1,30 @@
+
+<p>BARRA DE AYUDA</p>
+
+
+    <mat-list>
+    
+    <mat-list-item class="opcion-item">
+      <mat-icon matListItemIcon>home</mat-icon>
+      <span>HOME</span>
+    </mat-list-item>
+    <mat-list-item class="opcion-item">
+      <mat-icon matListItemIcon>group</mat-icon>
+      <span (click)="mostrarVentana.emit([true, false, false])">ALUMNOS</span>
+    </mat-list-item>
+    <mat-list-item class="opcion-item">
+      <mat-icon matListItemIcon>stars</mat-icon>
+      <span (click)="mostrarVentana.emit([false, true, false])">CURSOS</span>
+    </mat-list-item>
+    <mat-list-item class="opcion-item">
+      <mat-icon matListItemIcon>event_available</mat-icon>
+      <span (click)="mostrarVentana.emit([false, false, true])">CLASES</span>
+    </mat-list-item>
+    
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+    </mat-list>
+
+

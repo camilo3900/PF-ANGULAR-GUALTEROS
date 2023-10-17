@@ -1,9 +1,4 @@
-mat-toolbar{
-    margin-bottom: 0!important;
-    .example-spacer {
-        flex: 1 1 auto;
-      }
-}
+
 
   .example-container {
     margin-top: 0;
@@ -12,20 +7,16 @@ mat-toolbar{
   }
   
   .example-sidenav-content {
-    display:flex;
+
+    padding: 10px 40px;
+    display:block;
     height: 100%;
     justify-content: left;
   }
 
-  ul{
-    li{
-        display: inline-block;
-        width: 100%;
-        button{
-            font-size: 22px;
-        }
-    }
-  }
+
+
+ 
   
   .example-sidenav {
     padding: 20px;

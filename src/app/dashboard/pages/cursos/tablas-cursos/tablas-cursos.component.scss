@@ -1,0 +1,30 @@
+.content-tabla{
+    width: 60vw;
+    margin: 0 auto;
+    display: flex;
+    
+
+    table{
+        width: 70%;
+    
+        th, td{
+            width: auto;
+            border: 1px solid #ddd;
+
+            
+            
+        }
+        .acciones{
+            text-align: center;
+       
+            button:hover{
+
+                color: blue;
+                
+            }
+        }
+        th{
+            text-align: center;
+        }
+    }
+}
