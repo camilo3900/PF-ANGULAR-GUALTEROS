@@ -4,21 +4,21 @@
 
     <mat-list>
     
-    <mat-list-item class="opcion-item">
+    <mat-list-item routerLink="casa" class="opcion-item">
       <mat-icon matListItemIcon>home</mat-icon>
       <span>HOME</span>
     </mat-list-item>
-    <mat-list-item class="opcion-item">
+    <mat-list-item routerLink="alumnos"  class="opcion-item">
       <mat-icon matListItemIcon>group</mat-icon>
-      <span (click)="mostrarVentana.emit([true, false, false])">ALUMNOS</span>
+      <span  >ALUMNOS</span>
     </mat-list-item>
-    <mat-list-item class="opcion-item">
+    <mat-list-item routerLink="cursos" class="opcion-item">
       <mat-icon matListItemIcon>stars</mat-icon>
-      <span (click)="mostrarVentana.emit([false, true, false])">CURSOS</span>
+      <span >CURSOS</span>
     </mat-list-item>
-    <mat-list-item class="opcion-item">
+    <mat-list-item routerLink="clases" class="opcion-item">
       <mat-icon matListItemIcon>event_available</mat-icon>
-      <span (click)="mostrarVentana.emit([false, false, true])">CLASES</span>
+      <span >CLASES</span>
     </mat-list-item>
     
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>

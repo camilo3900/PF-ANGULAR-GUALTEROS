@@ -5,21 +5,16 @@
   (click)="drawer.toggle()">arrow_forward</mat-icon> -->
 
   <mat-drawer #drawer class="example-sidenav" mode="push" position="end" [opened]="showSidebar">
-
-  <app-navbar>
-
-    <!-- CONTENEDOR DE PAGINAS -->
-  
-  </app-navbar>
+    <!-- MENU LATERAL -->
+  <app-navbar></app-navbar>
   </mat-drawer>
       <div class="example-sidenav-content" #idDiv>
-        
-        
-        <!-- AQUI VA EL CONTENIDO PAGES -->
-       <!--  <app-cursos *ngIf="opcionCursos"></app-cursos> -->
-        <app-alumnos *ngIf="opcionAlumnos"></app-alumnos>
-        
+        <!-- AQUI VA EL CONTENIDO PAGES -->       
+     <router-outlet></router-outlet>     
       </div>
+
+
+        
       
 
 </mat-drawer-container>

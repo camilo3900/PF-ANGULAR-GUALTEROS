@@ -10,8 +10,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class DashboardComponent {
 
   showSidebar = true;
-  opcionAlumnos = true;
-  opcionCursos = false;
+
 
   @ViewChild('drawer')
   sidenav?: MatSidenav;
@@ -20,23 +19,8 @@ export class DashboardComponent {
   }
   /* habilita el componente de cursos */
   showData(lista: Array<boolean>): void {
-    this.opcionAlumnos
     this.sidenav?.toggle();
   }
-  onClickCursos(){
-    this.opcionAlumnos=true;
-    this.opcionCursos=true;
-    this.sidenav?.toggle();
-  }
-      /* habilita el componente de alumnos */
-  onCLickAlumnos(){
-    this.opcionCursos=false;
-    this.opcionAlumnos=true;
-    this.sidenav?.toggle();
-  }
-  /* habilita el componente de clases */
-  onClickClases(){
-    this.sidenav?.toggle();
-  }
+  
 }
 
