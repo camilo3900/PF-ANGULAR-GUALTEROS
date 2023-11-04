@@ -14,6 +14,9 @@ import {MatListModule} from '@angular/material/list';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { FuenteTitulosDirective } from './directivas/fuente-titulos.directive';
 import { FormErrorsPipe } from './pipes/form-errors.pipe';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     FullNamePipe,
@@ -37,7 +40,10 @@ import { FormErrorsPipe } from './pipes/form-errors.pipe';
     MatCardModule,
     MatListModule,
     FullNamePipe,
-    FormErrorsPipe
+    FormErrorsPipe,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
    ],
 })
 export class SharedModule { }

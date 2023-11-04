@@ -1,10 +1,12 @@
 <h1>NUESTROS CURSOS</h1>
 <button 
-(click)="abrirDialog()" mat-flat-button color="primary">
+(click)="addCourse()" mat-flat-button color="primary">
     <mat-icon>add</mat-icon>
     CREAR CURSO
 </button>
 <app-dialog-cursos *ngIf="abrirForm" ></app-dialog-cursos>
 
-<app-tablas-cursos [dataSource]="cursos" 
-(clickEdit)="onClickEdit($event)"></app-tablas-cursos>
+<app-tablas-cursos [dataSource]="(cursos$|async)||[]" 
+(clickEdit)="onClickEdit($event)"
+(clickDelete)="onClickDelete($event)"
+></app-tablas-cursos>

@@ -15,7 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     SharedModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   exports:[CursosComponent,]
 })

@@ -10,11 +10,14 @@ export class TablasCursosComponent {
  
 
   @Input()
-  dataSource : Array<Curso>=[];
-
+  dataSource : Array<Curso> =[];
   @Output()
-  clickEdit= new EventEmitter<Curso>();
+  clickDetail = new EventEmitter<Curso>();
+  @Output()
+  clickEdit= new EventEmitter();
+  @Output()
+  clickDelete = new EventEmitter();
 
 
-  displayedColumns= ["id", "name", "state", "action"]
+  displayedColumns= ["id", "name", "state", "firstDate", "endDate", "action"]
 }

@@ -1,41 +1,62 @@
-<!-- <h1 mat-dialog-title>
-    {{ user ? "Editando usuario" : "Crear usuario" }}
-  </h1> -->
 <h1 mat-dialog-title>
-  CREANDO USUARIO
-</h1>
+    {{ isEditing ? "Editando Curso" : "Creando Curso" }}
+  </h1>
+
 <div mat-dialog-content>
   <!-- Contenido... -->
-  <form [formGroup]="cursoForm">
+  <form [formGroup]="cursoForm" class="mb-4">
     <div class="row">
       <div class="col-6">
-        <mat-form-field class="w-100" appearance="outline">
+        <mat-form-field class="w-100">
           <mat-label>Nombre CURSO</mat-label>
           <input formControlName="name" matInput />
-
         </mat-form-field>
       </div>
-
       <div class="col-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>ESTADO</mat-label>
-          <input formControlName="state" matInput />
-
+        <mat-form-field class="w-100">
+          <mat-label>Escoge estado</mat-label>
+          <mat-select [(value)]="selectedValue">
+            <mat-option value="option1">Activo</mat-option>
+            <mat-option value="option2">Inactivo</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
+
     </div>
-  </form>
 
-
-  <div mat-dialog-actions class="form-cursos">
     <div class="row">
+
       <div class="col-6">
-        <button mat-dialog-close mat-flat-button color="accent" class="w-100">Cancelar</button>
+        <mat-form-field class="w-100">
+          <mat-label>Fecha inicial</mat-label>
+          <input matInput [matDatepicker]="pickerStart" formControlName="startDate" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
+          <mat-datepicker #pickerStart></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field class="w-100">
+        <mat-label>Fecha final</mat-label>
+        <input matInput [matDatepicker]="pickerEnd" formControlName="endDate" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEnd></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  </form>
+  <div mat-dialog-actions class="form-cursos">
+    <div class="row w-100">
+      <div class="col-12 mb-4">
+        <button mat-flat-button color="accent" (click)="onSubmitCourse()" class="w-100">Guardar</button>
       </div>
 
-      <div class="col-6">
-        <button mat-flat-button color="accent" class="w-100">Guardar</button>
+      <div class="col-12 ">
+        <button mat-dialog-close mat-flat-button color="accent" class="w-100">Cancelar</button>
       </div>
 
     </div>
   </div>
+</div>

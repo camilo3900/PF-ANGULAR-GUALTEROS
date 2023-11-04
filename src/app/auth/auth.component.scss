@@ -1,0 +1,43 @@
+.contentPrincipal {
+    background-color: black;
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    height: 100vh;
+    display: flex;
+    color: white;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+   
+}
+#img{
+    margin: 200px auto;
+    width: 500px;
+    height: auto;
+}
+#title {
+    font-size: 15px;
+}
+
+#title2 {
+    font-size: 50px;
+    font-weight: 500s;
+}
+.contentText{
+
+    display: inline  ;
+    height: auto;
+}
+
+#homeButton {
+
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 2em;
+    margin: 2em;
+    cursor:pointer;
+}
+
+
+

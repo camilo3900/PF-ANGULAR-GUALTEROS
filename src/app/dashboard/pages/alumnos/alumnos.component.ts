@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAlumnosComponent } from './dialog-alumnos/dialog-alumnos.component';
 import { UsuarioInterface } from '../../models/usuario.interface';
+import { datos } from '../data/datos.class';
 
 @Component({
   selector: 'app-alumnos',
@@ -16,27 +17,7 @@ alumnosList: Array<UsuarioInterface> = [];
 
   constructor(private matDialog:MatDialog){
 
-    this.alumnosList.push({
-      id:1,
-      nombre: "Diego",
-      apellido: "Patarroyo",
-      correo: "diego@email.com",
-      edad:22
-    },
-    {
-      id:2,
-      nombre: "Fabian",
-      apellido: "Guevara",
-      correo: "fgue.33@email.com",
-      edad:36
-    },
-    {
-      id:3,
-      nombre: "Luis",
-      apellido: "Escobar",
-      correo: "lucho@email.com",
-      edad:36
-    },)
+    this.alumnosList = datos.getAlumnos();
    
   }
 
