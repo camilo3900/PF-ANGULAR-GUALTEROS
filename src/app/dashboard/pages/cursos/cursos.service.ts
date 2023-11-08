@@ -3,9 +3,7 @@ import { Curso } from '../../models/curso.class';
 import { datos } from '../data/datos.class';
 import { Observable, of } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CursosService {
   listaCursos: Array<Curso> = datos.getCursos();
   constructor() { }
@@ -18,7 +16,7 @@ export class CursosService {
     return of([...this.listaCursos]);
   }
 
-  editCourse$(id: number, payload: Curso): Observable<Curso[]> {
+  editCourse$(id: number, payload: Curso): Observable<Array<Curso>> {
     return of(
       this.listaCursos.map((c) => (c.id === id ? { ...c, ...payload } : c))
     );
@@ -29,7 +27,7 @@ export class CursosService {
     return of(this.listaCursos);
   }
 
-  getCourseById$(id: number): Observable<Curso | undefined> {
-    return of(this.listaCursos.find((c) => c.id === id));
+  getCourseById$(id?: number): Observable<Curso | undefined> {
+    return of(this.listaCursos.find((c) => c.id == id));
   }
 }

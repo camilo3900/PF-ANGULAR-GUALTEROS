@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Curso } from '../../models/curso.class';
 import { DialogCursosComponent } from './dialog-cursos/dialog-cursos.component';
 import { CursosService } from './cursos.service';
-import { Observable, map, toArray } from 'rxjs';
+import { Observable, map} from 'rxjs';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
@@ -14,14 +15,13 @@ export class CursosComponent {
   cursos$: Observable<Array<Curso>>;
   constructor(private cursosService: CursosService,
     private matDialog: MatDialog){
-    this.cursos$ = this.cursosService.getCourses$();
-      
+    this.cursos$ = this.cursosService.getCourses$();    
     }
 
-    abrirDialog():void{
+/*     abrirDialog():void{
       this.abrirForm = !this.abrirForm;
-    };
-
+    }; */
+    /* Para agregar */
     addCourse(): void{
       this.matDialog
       .open(DialogCursosComponent)
@@ -29,34 +29,30 @@ export class CursosComponent {
       .subscribe({
         next: (v)=>{
           if(v){
-            this.cursos$.pipe(toArray(), map((cursoArray)=>{
-              const longitud = cursoArray.length;
-              return{
-                id: longitud+1,
-                nombre: v.name,
+            let nuevoCurso: Curso;
+            this.cursosService.getCourses$().pipe( map((cursoArray)=>{
+              nuevoCurso={
+                id: cursoArray.length+1,
+                nombre: v.nombre,
                 estado: v.estado,
                 startDate: v.startDate,
                 endDate: v.endDate
               };
-            }))
+            })).subscribe(cursos=>{
+              Swal.fire({
+                title: "Operacion Exitosa!",
+                text: `Se ha creado el curso: ${nuevoCurso.nombre}`,
+                icon: "success"
+              });
+              this.cursos$ = this.cursosService.createCourse$(nuevoCurso);
+            });
           }
 
         }
       });
 
     }
-
- /*    if(v){
-      this.cursos$ = this.cursosService.createCourse$({
-        id: this.cursos$.pipe(toArray(), map((v)=>v.length)).subscribe(longitud=> longitud+1),
-        nombre: v.name,
-        estado: v.estado,
-        startDate: v.startDate,
-        endDate: v.endDate
-      });
-    } */
-    onClickEdit(cursoId: number){
-     
+    onClickEdit(cursoId: number): void{
         this.matDialog.open(DialogCursosComponent, {
           data: cursoId,
         }).afterClosed()
@@ -66,12 +62,24 @@ export class CursosComponent {
               this.cursos$ = this.cursosService.editCourse$(cursoId, result);
             }
           },
-        });
-      
+        });  
     }
     onClickDelete(cursoId: number){
-      alert("Borrando")
-      this.cursos$ = this.cursosService.deleteCourse$(cursoId);
+      Swal.fire({
+        title: '¿Deseas eliminar este curso?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Aquí puedes realizar la acción de eliminación
+          Swal.fire('Eliminado', 'El elemento ha sido eliminado', 'success');
+          this.cursos$ = this.cursosService.deleteCourse$(cursoId);
+        }
+      });
+
     }
 
 

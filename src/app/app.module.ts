@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AuthModule } from './auth/auth.module';
 @NgModule({
     declarations: [
         AppComponent
@@ -17,8 +17,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
         AppRoutingModule,
         BrowserAnimationsModule,
         DashboardModule,
+        AuthModule,
         CoreModule,
-
 
     ]
 })

@@ -1,8 +1,8 @@
-<h1 mat-dialog-title appFuenteTitulos>  {{ alumno ? "Editando Alumno" : "Crear Alumno" }}</h1>
+<h1 mat-dialog-title appFuenteTitulos>  {{ isEditing? "Editando Alumno" : "Crear Alumno" }}</h1>
 <div mat-dialog-content>
     <!-- CONTENIDO -->
 
-    <form [formGroup]="alumnoForm " >
+    <form [formGroup]="alumnoForm" >
         <div class="row">
             <div class="col-6">
                 <mat-form-field class="w-100">
@@ -39,7 +39,7 @@
 
 <div mat-dialog-actions>
 <!-- [disabled]="activateButton()==true" -->
-    <button mat-flat-button  (click)="onSubmit()"  color="accent" class="w-100 mb-3" >GUARDAR</button>
+    <button mat-flat-button  (click)="onSubmitAlumno()"  color="accent" class="w-100 mb-3" >GUARDAR</button>
     <button mat-flat-button mat-dialog-close  color="accent" class="w-100">CANCELAR</button>
 </div>
 

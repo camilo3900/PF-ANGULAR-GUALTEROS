@@ -9,6 +9,6 @@ export class Curso {
 }
 
 export enum EstadoCurso{
-    caso1= "activo",
-    caso2= "inactivo"
+    caso1 = "activo",
+    caso2  = "inactivo"
 }

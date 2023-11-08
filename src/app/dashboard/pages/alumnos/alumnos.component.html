@@ -1,11 +1,10 @@
 <h1>NUESTROS ALUMNOS</h1>
-<button (click)="openUsersDialog()" mat-flat-button color="primary">
+<button (click)="addAlumno()" mat-flat-button color="primary">
     <mat-icon>add</mat-icon>ADICIONAR ALUMNO
 </button>
 <app-tablas-alumnos
-[dataSource]="alumnosList"
-(editUser)="onEditUser($event)"
+[dataSource]="(alumnosList$|async)||[]"
 (deleteUser)=" onDeleteAlumno($event)"
+(editUser)=" onEditAlumno($event)"
 ></app-tablas-alumnos>
-
 

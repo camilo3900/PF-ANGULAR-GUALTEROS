@@ -1,0 +1,13 @@
+<h1>SALA DE PROFESORES</h1>
+<button (click)="addProfesor()" mat-flat-button color="primary">
+    <mat-icon>add</mat-icon>ADICIONAR PROFESOR
+</button>
+
+<app-tablas-profesores
+[dataSource]="(profesList$|async)||[]"
+(deleteProfesor)="onDeleteProfe($event)"
+(editProfesor)="onEditProfe($event)"
+
+></app-tablas-profesores>
+
+<!-- [dataSource]="(profesList$|async)||[]" -->

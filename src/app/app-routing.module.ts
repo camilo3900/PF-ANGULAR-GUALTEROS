@@ -6,6 +6,8 @@ import { CursosComponent } from './dashboard/pages/cursos/cursos.component';
 import { ClasesComponent } from './dashboard/pages/clases/clases.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './dashboard/pages/home/home.component';
+import { ProfesoresComponent } from './dashboard/pages/profesores/profesores.component';
+import { CursoDatailComponent } from './dashboard/pages/cursos/curso-datail/curso-datail.component';
 
 const routes: Routes = [
   {
@@ -25,8 +27,20 @@ const routes: Routes = [
         component: CursosComponent,
       },
       {
+        path: 'cursos/:id',
+        component: CursoDatailComponent,
+      },
+      {
         path: 'clases',
         component: ClasesComponent,
+      },
+      {
+        path: 'profesores',
+        component: ProfesoresComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'home',
       },
     ],
   },

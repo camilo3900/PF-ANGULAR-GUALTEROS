@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Alumno } from 'src/app/dashboard/models/alumno.class';
-import { UsuarioInterface } from 'src/app/dashboard/models/usuario.interface';
+import { Usuario } from 'src/app/dashboard/models/usuario.class';
+
 
 @Component({
   selector: 'app-tablas-alumnos',
@@ -10,9 +10,9 @@ import { UsuarioInterface } from 'src/app/dashboard/models/usuario.interface';
 export class TablasAlumnosComponent {
 
   @Input()
-  dataSource : Array<UsuarioInterface> = [];
+  dataSource : Array<Usuario> = [];
   @Output()
-  editUser = new EventEmitter<UsuarioInterface>();
+  editUser = new EventEmitter();
   @Output()
   deleteUser = new EventEmitter<number>();
   displayedColumns = ['id', 'fullName', 'email', 'actions'];

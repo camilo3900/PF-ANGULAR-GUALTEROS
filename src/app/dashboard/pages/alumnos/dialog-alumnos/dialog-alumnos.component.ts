@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Alumno } from 'src/app/dashboard/models/alumno.class';
-import { UsuarioInterface } from 'src/app/dashboard/models/usuario.interface';
+import { AlumnosService } from '../alumnos.service';
+
 
 
 @Component({
@@ -15,28 +15,43 @@ export class DialogAlumnosComponent {
   alumnoForm: FormGroup;
   constructor(private fb: FormBuilder, 
     private matDialogRef: MatDialogRef<DialogAlumnosComponent>,
+    private alumnosService: AlumnosService,
     //RECIBO LA DATA
-    @Inject(MAT_DIALOG_DATA) public alumno?: UsuarioInterface){
-      
+    @Inject(MAT_DIALOG_DATA) private alumnoId?: number){
+     
+    /* Validaciones formulario de alumnos */
     this.alumnoForm  = this.fb.group({
       nombre: ["", Validators.required],
       apellido:["", Validators.required],
       correo: ["", [Validators.required, Validators.email]]
     });
-   
-    if(this.alumno){
-      this.alumnoForm.patchValue(this.alumno);
+    /* Para pisar los datos en el formulario */
+    if(this.alumnoId){
+      this.alumnosService.getAlumnosById$(alumnoId).subscribe({
+        next: (al)=>{
+          if(al){
+            this.alumnoForm.patchValue(al);
+          }
+        }
+      });
+      
     }
  
   }
- 
 
+  public get isEditing(): boolean {
+    return !!this.alumnoId;
+  }
+ 
+  /* Obtener tag para el nombre */
   get alumnoFormName(){  
     return this.alumnoForm.controls['nombre'];
   }
+  /* Obtener tag para apellido */
   get alumnoFormLastName(){
     return this.alumnoForm.controls['apellido'];
   }
+  /* Obtener tag para correo */
   get alumnoFormEmail(){
     return this.alumnoForm.controls['correo'];
   } 
@@ -49,16 +64,15 @@ export class DialogAlumnosComponent {
     }
     
   }
-  onSubmit(){
+  onSubmitAlumno(){
     if(this.alumnoForm.invalid){
+      /* se marcan todos los campos del form */
       this.alumnoForm.markAllAsTouched();
      
-    }else{
-      
-
+    }else{   
+      /* Se obtienen valores de campos del form */ 
       this.matDialogRef.close(this.alumnoForm.value);
-     
-
+ 
     }
   }
 

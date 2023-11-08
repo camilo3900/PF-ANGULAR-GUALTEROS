@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAlumnosComponent } from './dialog-alumnos/dialog-alumnos.component';
-import { UsuarioInterface } from '../../models/usuario.interface';
-import { datos } from '../data/datos.class';
+
+import { AlumnosService } from './alumnos.service';
+import { Usuario } from '../../models/usuario.class';
+import { Observable, map, toArray} from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alumnos',
@@ -12,61 +15,81 @@ import { datos } from '../data/datos.class';
 
 export class AlumnosComponent {
 
-alumnosList: Array<UsuarioInterface> = [];
+alumnosList$: Observable<Array<Usuario>>
+idAlumno: number =0;
 
-
-  constructor(private matDialog:MatDialog){
-
-    this.alumnosList = datos.getAlumnos();
-   
+  constructor(private matDialog:MatDialog, private alumnosService: AlumnosService){
+    this.alumnosList$ = this.alumnosService.getAlumnos$(); //Se actualiza llamando al servicio
   }
-
-
-  openUsersDialog(): void{
-    this.matDialog
-    .open(DialogAlumnosComponent)
+  /* funcion para crearlo */
+  addAlumno(): void{
+    this.matDialog.open(DialogAlumnosComponent)
     .afterClosed()
-    .subscribe({
-      next:(value)=>{
-        console.log('valor: ', value);
-        if(!!value){
-          this.alumnosList = [
-            ...this.alumnosList,
-          {id: this.alumnosList.length+1,
-            ...value,},
-         ];
+    .subscribe( 
+      {
+      next: (result)=>{
+        if(result){
+          let nuevoAlumno: Usuario;
+          this.alumnosService.getAlumnos$().pipe(map((al)=> {
+            nuevoAlumno = {
+              id: al.length+1,
+              nombre: result.nombre,
+              apellido: result.apellido,
+              correo: result.correo,
+              edad: 0             
+            };
+            
+          }))
+          .subscribe(alumnos=>{
+             this.alumnosList$ = this.alumnosService.addAlumnos$(nuevoAlumno);
+          });
+  
         }
-        
-      },
+      }
+    })
+  }
+  /* funcion para eliminar alumno */
+  onDeleteAlumno(alumnoId: number): void{
+    Swal.fire({
+      title: '¿Deseas eliminar este curso?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Aquí se filtra el nombre del alumno
+        this.alumnosService.getAlumnosById$(alumnoId).pipe(map((c)=>c?.nombre)).subscribe((nombre=>{
+          if(nombre){
+            Swal.fire('Eliminado', `El alumno ${nombre} ha sido eliminado`, 'success');            
+          }
+        }));
+    this.alumnosList$ = this.alumnosService.deleteAlumnos$(alumnoId);
+     
+      }
     });
-  };
 
-
-  onEditUser(alumno: UsuarioInterface): void {
-    this.matDialog.open(DialogAlumnosComponent, {
-        data: alumno})
-        .afterClosed()
-        .subscribe({
-          next:(v)=>{
-            if(!!v){
-              console.log(v);
-              
-              this.alumnosList = this.alumnosList.map((el)=>
-                (el.id==alumno?.id)?{
-                  ...el, ...v
-                }:el);
-              }
-            },
-            });
-          
-        
+  }
+  /* funcion para editarlo */
+  onEditAlumno(alumnoId: number): void {
+    this.matDialog
+      .open(DialogAlumnosComponent, {
+        data: alumnoId,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          if (!!result) {
+            this.alumnosList$ = this.alumnosService.editAlumnos$(alumnoId, result);
+          }
+        },
+      });
   }
 
-  onDeleteAlumno(alumnoId: number): void{
-    let persona = this.alumnosList.filter((u)=>u.id==alumnoId);
-    if(JSON.stringify(confirm(`quieres eliminar este alumno? ${persona}`))){
-      this.alumnosList= this.alumnosList.filter((u)=>u.id !== alumnoId);
-    };
-  };
+
+
+
+
 
 }

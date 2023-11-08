@@ -5,6 +5,7 @@ import { DialogAlumnosComponent } from './dialog-alumnos/dialog-alumnos.componen
 import { TablasAlumnosComponent } from './tablas-alumnos/tablas-alumnos.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlumnosService } from './alumnos.service';
 
 
 
@@ -23,7 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AlumnosComponent,
     TablasAlumnosComponent,
     DialogAlumnosComponent,
-    
+  ],
+  providers:[
+    AlumnosService
   ]
 })
 export class AlumnosModule { }

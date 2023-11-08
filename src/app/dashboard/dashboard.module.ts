@@ -7,6 +7,8 @@ import { CursosModule } from './pages/cursos/cursos.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { ProfesoresModule } from './pages/profesores/profesores.module';
+import { HomeModule } from './pages/home/home.module';
 
 
 
@@ -20,7 +22,9 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     SharedModule,
     AlumnosModule,
+    HomeModule,
     CursosModule,
+    ProfesoresModule,
     RouterModule
   ],
   exports:[DashboardComponent]
