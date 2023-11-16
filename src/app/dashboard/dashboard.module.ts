@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { ProfesoresModule } from './pages/profesores/profesores.module';
 import { HomeModule } from './pages/home/home.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 
 
@@ -25,7 +26,7 @@ import { HomeModule } from './pages/home/home.module';
     HomeModule,
     CursosModule,
     ProfesoresModule,
-    RouterModule
+    DashboardRoutingModule
   ],
   exports:[DashboardComponent]
 })

@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { FuenteTitulosDirective } from './directivas/fuente-titulos.directive';
-import { FormErrorsPipe } from './pipes/form-errors.pipe';
+import { FormErrors } from './pipes/form-errors.pipe';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
@@ -21,7 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
   declarations: [
     FullNamePipe,
     FuenteTitulosDirective,
-    FormErrorsPipe
+    FormErrors
   ],
   imports: [
     CommonModule
@@ -40,7 +40,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatCardModule,
     MatListModule,
     FullNamePipe,
-    FormErrorsPipe,
+    FormErrors,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule

@@ -1,0 +1,17 @@
+.container-container{
+    padding: 30px;
+    .container-title{
+        display: flex;
+        justify-content: center;
+        .title{
+            color: white;
+            font-weight: 700;
+        }
+    }
+    .btn-login{
+        margin-top: 40px;
+        font-weight: 700;
+        font-size: 22px;
+        padding: 10px;
+    }
+}

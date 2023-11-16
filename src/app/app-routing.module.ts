@@ -12,46 +12,17 @@ import { CursoDatailComponent } from './dashboard/pages/cursos/curso-datail/curs
 const routes: Routes = [
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    children: [
-      {
-        path: "casa",
-        component: HomeComponent,
-      },
-      {
-        path: 'alumnos',
-        component: AlumnosComponent,
-      },
-      {
-        path: 'cursos',
-        component: CursosComponent,
-      },
-      {
-        path: 'cursos/:id',
-        component: CursoDatailComponent,
-      },
-      {
-        path: 'clases',
-        component: ClasesComponent,
-      },
-      {
-        path: 'profesores',
-        component: ProfesoresComponent,
-      },
-      {
-        path: '**',
-        redirectTo: 'home',
-      },
-    ],
+    loadChildren: ()=>import('./dashboard/dashboard.module').then((m)=>m.DashboardModule)
+    
   },
   {
     path: 'auth',
-    component: AuthComponent,
+    loadChildren: ()=>import('./auth/auth.module').then((m)=>m.AuthModule)
 
   },
   {
     path: "**",
-    redirectTo: "auth",
+    redirectTo: 'auth/login',
   }
 ];
 

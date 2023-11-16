@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CursoDatailComponent } from './curso-datail/curso-datail.component';
 import { RouterModule } from '@angular/router';
 import { CursosService } from './cursos.service';
+import { CursosRoutingModule } from './cursos-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { CursosService } from './cursos.service';
     DialogCursosComponent,
     CursoDatailComponent,
   ],
-  imports: [CommonModule, SharedModule, MatButtonModule, RouterModule],
+  imports: [CommonModule, SharedModule, MatButtonModule, CursosRoutingModule],
   exports: [
     CursosComponent,
     TablasCursosComponent,
