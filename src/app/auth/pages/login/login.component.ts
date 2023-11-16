@@ -24,7 +24,7 @@ export class LoginComponent {
     } else {
       
       console.log(this.loginForm.valid);
-      this.router.navigate(['dashboard/'])
+      this.router.navigate(['dashboard/home'])
        
     }
   }

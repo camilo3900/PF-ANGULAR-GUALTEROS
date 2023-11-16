@@ -3,6 +3,8 @@ export interface UsuarioInterface {
     nombre: string,
     apellido: string,
     correo: string,
+    password?: string,
+    token?: string,
     edad?: number,
 
 }

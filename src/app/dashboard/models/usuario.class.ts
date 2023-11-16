@@ -6,7 +6,10 @@ export class Usuario implements UsuarioInterface {
         public nombre: string,
         public apellido: string,
         public correo: string,
-        public edad?: number ,){
+        public edad?: number ,
+        public password?: string,
+        public token?: string){
     } 
+
     
 }
